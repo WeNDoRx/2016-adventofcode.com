@@ -5,7 +5,7 @@ import re
 pattern1 = re.compile(".*(?P<A>.)(?P<B>.)(?P=B)(?P=A).*")
 pattern2 = re.compile(".*\[[\w]*(?P<A>.)(?P<B>.)(?P=B)(?P=A)[\w]*\].*")
 
-total_part_1 = 0
+total_part_1 = 1
 
 with open("day07.input") as f:
 	for line in f:
