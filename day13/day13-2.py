@@ -84,8 +84,9 @@ count = 0
 
 for x in xrange(0,50):
 	for y in xrange(0,50):
-		path = find_path_astar(maze, x, y)
-		if path != "NO WAY!" and len(path) <= 50:
-			count += 1
+		if maze[x][y] != '#':
+			path = find_path_astar(maze, x, y)
+			if path != "NO WAY!" and len(path) <= 50:
+				count += 1
 
 print count
