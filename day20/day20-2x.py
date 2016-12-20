@@ -8,32 +8,26 @@
 
 start = []
 end = []
-lines = []
 
-import operator
-
-i = 0
 with open('day20.input', 'r') as f:
 	for line in f:
-		lines += [[int(line.rstrip("\n").split("-")[0]), int(line.rstrip("\n").split("-")[1])]]
+		split = line.rstrip("\n").split("-")
+		start += [int(split[0])]
+		end += [int(split[1])]
 
-lines.sort(key=lambda x: x[0])
+found = []
 
-x = 0
-while True:
-	if lines[x][0] > lines[x + 1][1]:
-		del lines[x + 1]
+for i in xrange(0, max(end)):
+	notInList = True
+	for x in xrange(0, len(start) - 1):
+		if i >= start[x] and i <= end[x]:
+			notInList = False
+			break
+	if i > end[x]:
+		del start[x]
+		del end[x]
+	if notInList:
+		found.append(i)
+		print len(found), i, max(end)
 
-	if lines[x][0] > lines[x + 1][0]:
-		lines[x + 1][0] = lines[x][0]
-		x += 1
-
-	if lines[x][1] > lines[x + 1][0]:
-		print lines[x][1], lines[x + 1][0]
-		print lines
-		break
-	x += 1
-	print x
-
-	if x + 2 > len(lines):
-		break
+print len(found)
